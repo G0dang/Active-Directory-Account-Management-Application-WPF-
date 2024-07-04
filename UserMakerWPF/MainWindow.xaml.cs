@@ -768,9 +768,18 @@ namespace UserMakerWPF
 					newUser.Properties["scriptPath"].Value = $"Disclaimer.exe {disclaimerSuffix.Text}";
 				}
 
-				newUser.Properties["company"].Value = CompanyName;
+				if (!String.IsNullOrEmpty("CompanyName"))
+				{
+					newUser.Properties["company"].Value = CompanyName;
+				}
+				
+				
 				newUser.Properties["ou"].Value = OUBox.Text;
-				newUser.Properties["title"].Value = jTitle.Text;
+
+				if (!String.IsNullOrEmpty("jTitle"))
+				{
+					newUser.Properties["title"].Value = jTitle.Text;
+				}
 
 				if (!String.IsNullOrEmpty(tempBox.Text))
 				{
@@ -842,7 +851,6 @@ namespace UserMakerWPF
 
 		#region 13. Button click event for organisational units.
 
-
 		private void ou_BtnClick(object sender, EventArgs e)
 		{
 			#region 13.1. DIRECTLY SEARCH FOR THE ORGANISATIONAL UNITS FROM THE DIRECTORY
@@ -869,9 +877,6 @@ namespace UserMakerWPF
 			#endregion
 
 		}
-
-
-
 		#endregion
 		
 

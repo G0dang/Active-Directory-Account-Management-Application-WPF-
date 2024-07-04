@@ -26,7 +26,7 @@
             <ColumnDefinition Width="84*"/>
             <ColumnDefinition Width="181*"/>
         </Grid.ColumnDefinitions>
-        <TabControl x:Name="tabControl" Background="#FF26C6DA" Margin="11,-12,0,0" Grid.ColumnSpan="4" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="628" Grid.RowSpan="4" Height="340" VerticalAlignment="Top">
+        <TabControl x:Name="tabControl" Background="#FF26C6DA" Margin="21,-3,0,0" Grid.ColumnSpan="4" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="628" Grid.RowSpan="4" Height="340" VerticalAlignment="Top">
             <TabControl.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
