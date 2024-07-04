@@ -103,16 +103,17 @@ namespace UserMakerWPF
 								mailboxCreated = await MailBoxConnect.GetMailboxInfo(userName, password, firstName, lastName, domain);
 
 								progressBar.Visibility = Visibility.Visible;
-								//progressLabel.Visible = true;
+								
 
 
 								if (mailboxCreated)
 								{
-									progressBar.Visibility = Visibility.Hidden;
-									//progressLabel.Visible = false;
+									
+									
 
 									MessageBox.Show("Mailbox creation completed or error occured.(ONLY FOR TESTING)");
-								}
+									progressBar.Visibility = Visibility.Hidden;
+							}
 
 								if (!mailboxCreated)
 								{
@@ -138,6 +139,7 @@ namespace UserMakerWPF
 
 					{
 						MessageBox.Show("MailBox already exists.?? pls check");
+						progressBar.Visibility = Visibility.Hidden;
 					}
 
 				}

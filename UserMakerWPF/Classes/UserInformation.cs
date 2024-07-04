@@ -14,7 +14,10 @@ namespace UserMakerWPF.Classes
 
 		public override string ToString()
 		{
-			return DisplayName; // Display only the DisplayName in ComboBox
+			return DisplayName; 
+				
 		}
+		
+
 	}
 }

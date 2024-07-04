@@ -57,36 +57,36 @@ namespace UserMaker
 				}
 
 
-				// Initialize DirectoryEntry and DirectorySearcher objects
-				searcher.Filter = "(userPrincipalName=" + strUserPrincipalName + ")";
-				SearchResult result = searcher.FindOne();
 
-				if (result != null)
+				PSCredential credential = new PSCredential($"{userName}", securePassword);
+
+				// Create WSMan connection info
+				Uri connectionUri = new Uri($"http://{exchangeServer}/PowerShell/");
+
+				WSManConnectionInfo connectionInfo = new WSManConnectionInfo(connectionUri, "http://schemas.microsoft.com/powershell/Microsoft.Exchange", credential);
+
+
+				connectionInfo.AuthenticationMechanism = AuthenticationMechanism.Kerberos;
+
+
+				// Create runspace
+				using (Runspace rs = RunspaceFactory.CreateRunspace(connectionInfo))
+
 				{
-					// Create credential object
-					PSCredential credential = new PSCredential($"{userName}", securePassword);
+					// Initialize DirectoryEntry and DirectorySearcher objects
+					searcher.Filter = "(userPrincipalName=" + strUserPrincipalName + ")";
+					SearchResult result = searcher.FindOne();
+					await Task.Run(() => rs.Open());
 
-					// Create WSMan connection info
-					Uri connectionUri = new Uri($"http://{exchangeServer}/PowerShell/");
-
-					WSManConnectionInfo connectionInfo = new WSManConnectionInfo(connectionUri, "http://schemas.microsoft.com/powershell/Microsoft.Exchange", credential);
-
-
-					connectionInfo.AuthenticationMechanism = AuthenticationMechanism.Kerberos;
-
-
-					// Create runspace
-					using (Runspace rs = RunspaceFactory.CreateRunspace(connectionInfo))
-
+					if (result != null)
 					{
+						// Create credential object
 
 
 						try
 
 						{
 							MessageBox.Show("Connection Established");
-
-							await Task.Run(() => rs.Open());
 
 							MessageBox.Show("Mailbox creation started");
 
@@ -140,16 +140,16 @@ namespace UserMaker
 						}
 
 					}
+
+					else
+
+					{
+						MessageBox.Show($"User: {strSamAccountName.Replace(".", " ")} not found. Will try again in 30 seconds....(SET TO 10 SECONDS FOR TESTING)");
+						return false;
+
+					}
+
 				}
-
-				else
-
-				{
-					MessageBox.Show($"User: {strSamAccountName.Replace(".", " ")} not found. Will try again in 30 seconds....(SET TO 10 SECONDS FOR TESTING)");
-					return false;
-
-				}
-
 			}
 
 		}

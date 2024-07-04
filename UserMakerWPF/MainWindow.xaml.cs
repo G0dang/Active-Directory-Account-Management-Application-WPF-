@@ -59,6 +59,8 @@ namespace UserMakerWPF
 			dnFinder = new DNFinder();    
 
 			domainFinder = new SearchComboBox();
+
+			ticketID_textbox.KeyDown += new KeyEventHandler(ticketID_textbox_KeyDown);
 		}
 
 		
@@ -365,7 +367,6 @@ namespace UserMakerWPF
 						//compare the string of the name in the customfields. If the string matches, display and fill the values accordingly.
 						foreach (var field in ticket.customfields)
 						{
-
 							if (field.name == "CFEmployeeAddress")
 							{
 								string address = field.display;
@@ -391,9 +392,10 @@ namespace UserMakerWPF
 											address = address.Replace(city, "").Replace(postcode, "").Trim();
 										}
 									}
-
 								}
+								
 								else
+								
 								{
 									// Check for empty string key (where the address does not copntain city name but has post code)
 									if (cityDict.Cities.TryGetValue("", out var postcodes))
@@ -411,6 +413,7 @@ namespace UserMakerWPF
 
 										cityBox.Text = ""; // No specific city found
 									}
+									
 									else
 									{
 										cityBox.Text = "";
@@ -773,6 +776,7 @@ namespace UserMakerWPF
 				{
 					newUser.Properties["manager"].Value = managerDistinguishedName;
 				}
+
 				else
 				{
 					#region 8.2.1. [REGIONAL MANAGER ATTRIBUTE] Previously selected regional manager from the list and updated the attribute 
@@ -782,9 +786,30 @@ namespace UserMakerWPF
 
 					if (RMBox.SelectedItem != null)
 					{
-						UserInformation selectedUser = (UserInformation)RMBox.SelectedItem;
-						string distinguishedNameOfManager = selectedUser.DistinguishedName;
-						newUser.Properties["manager"].Value = distinguishedNameOfManager;
+						try {
+							UserInformation selectedUser = (UserInformation)RMBox.SelectedItem;
+
+
+							string distinguishedNameOfManager = selectedUser.DistinguishedName;
+
+							newUser.Properties["manager"].Value = distinguishedNameOfManager;
+							}
+
+						catch (System.DirectoryServices.DirectoryServicesCOMException ex)
+						{
+							// Handle directory service errors
+							MessageBox.Show($"Error setting manager: {ex.Message}");
+						}
+						catch (Exception ex)
+						{
+							MessageBox.Show($"Error in regional manager : {ex.Message}");
+						}
+
+						
+					}
+					else
+					{
+						MessageBox.Show("Manager DN is invalid or empty");
 					}
 					#endregion
 				}
@@ -866,12 +891,22 @@ namespace UserMakerWPF
 
 		}
 
+		private void ticketID_textbox_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Enter)
+			{
+				// Trigger the search button click event
+				searchTicket_btnClick(this, new RoutedEventArgs());
+
+				// Prevent the beep sound on Enter key press
+				e.Handled = true;
+			}
+		}
+
 		private void ticketID_textbox_TextChanged(object sender, TextChangedEventArgs e)
 		{
 
 		}
-
-		
 	}
 
 	#region classes for ticket information retireval from the Halo API
