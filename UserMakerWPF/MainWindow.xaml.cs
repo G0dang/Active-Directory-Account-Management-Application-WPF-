@@ -24,6 +24,7 @@ using System.Net.Http;
 
 
 
+
 //using System.Windows.Forms;
 
 
@@ -130,6 +131,7 @@ namespace UserMakerWPF
 				string displayName = selectedUser.DisplayName;
 				string distinguishedName = selectedUser.DistinguishedName;
 
+				
 			}
 		}
 		private void Next_Click(object sender, RoutedEventArgs e)
@@ -584,6 +586,8 @@ namespace UserMakerWPF
 				adminForm adminLoginForm = new adminForm(firstName, lastName, domain, pb_mail);
 				adminLoginForm.Show();
 			}
+
+
 		}
 
 		#endregion
@@ -861,7 +865,15 @@ namespace UserMakerWPF
 			rmLabel.Foreground = Brushes.Black;
 
 		}
+
+		private void ticketID_textbox_TextChanged(object sender, TextChangedEventArgs e)
+		{
+
+		}
+
+		
 	}
+
 	#region classes for ticket information retireval from the Halo API
 	public class AuthenticationRoot
 	{

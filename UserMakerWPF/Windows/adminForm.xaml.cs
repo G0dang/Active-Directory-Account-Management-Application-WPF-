@@ -37,6 +37,8 @@ namespace UserMakerWPF
 			this.lastName = lastName;
 			this.domain = domain;
 			this.progressBar = progressBar;
+
+			adminPassword.KeyDown += new KeyEventHandler(adminPassword_KeyDown);
 		}
 
 		
@@ -167,5 +169,22 @@ namespace UserMakerWPF
 			progressBar.Value = progressBar.Maximum; // Ensure progress bar is full at the end
 		}
 		#endregion
+
+		private void adminPassword_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Enter)
+			{
+				// Trigger the search button click event
+				adminBtnOKClick(this, new RoutedEventArgs());
+
+				// Prevent the beep sound on Enter key press
+				e.Handled = true;
+			}
+		}
+
+		private void button2_Click(object sender, RoutedEventArgs e)
+		{
+			this.Close();
+		}
 	}
 }
