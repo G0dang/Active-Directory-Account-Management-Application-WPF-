@@ -82,10 +82,10 @@ namespace UserMakerWPF
 
 				this.Close();
 
-				using (DirectoryEntry entry = new DirectoryEntry("LDAP://internal.detmold.com.au"))
+				using (DirectoryEntry entry = new DirectoryEntry("LDAP://"))
 				using (DirectorySearcher searcher = new DirectorySearcher(entry))
 				{
-					searcher.Filter = "(targetAddress=" + "SMTP:" + samName + "@detconnect.mail.onmicrosoft.com)";
+					searcher.Filter = "(targetAddress=" + "SMTP:" + samName + "@.com)";
 					SearchResult routingResult = searcher.FindOne();
 
 					if (routingResult == null)

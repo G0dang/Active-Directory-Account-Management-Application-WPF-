@@ -12,7 +12,7 @@ namespace UserMakerWPF.Classes
 		public string[] Load_OU()
 		{
 			// Specify the LDAP path of the root organizational unit
-			string rootOUPath = "LDAP://OU=Users,OU=Accounts,DC=internal,DC=detmold,DC=com,DC=au";
+			string rootOUPath = "LDAP://OU=,OU=,DC=,DC=,DC=,DC=au";
 
 			// Create a DirectoryEntry object for the root OU
 			using (DirectoryEntry rootOU = new DirectoryEntry(rootOUPath))

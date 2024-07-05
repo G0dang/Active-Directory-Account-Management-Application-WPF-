@@ -35,12 +35,12 @@ namespace UserMakerWPF
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		private const string OUDN = "OU=Aayush Test,OU=Accounts,DC=internal,DC=detmold,DC=com,DC=au";
-		private static readonly string apiBaseUrl = "https://detmoldgroupuat.haloitsm.com";
+		private const string OUDN = "OU=,OU=,DC=,DC=,DC=com,DC=au";
+		private static readonly string apiBaseUrl = "https://";
 
 		private static string username = "Aayush Gurung";
-		private static string password = "DetmoldGroupUAT2024!";
-		private static string clientID = "2c45fe93-3daa-40b2-9533-e2fd19df7dc3";
+		private static string password = "";
+		private static string clientID = "";
 
 		private string managerDistinguishedName;
 		private DNFinder dnFinder;
@@ -166,7 +166,7 @@ namespace UserMakerWPF
 			if (!string.IsNullOrEmpty(fName.Text))
 			{
 				// Initialize DirectoryEntry and DirectorySearcher objects
-				using (DirectoryEntry entry = new DirectoryEntry("LDAP://internal.detmold.com.au"))
+				using (DirectoryEntry entry = new DirectoryEntry("LDAP://"))
 				using (DirectorySearcher searcher = new DirectorySearcher(entry))
 				{
 					// Set the filter to search for user with the provided UPN
@@ -691,7 +691,7 @@ namespace UserMakerWPF
 				UPN = fName.Text + "." + lName.Text + "@" + domainList.Text;
 				Pre2000 = fName.Text + "." + lName.Text;
 			}
-			using (DirectoryEntry entry = new DirectoryEntry("LDAP://internal.detmold.com.au"))
+			using (DirectoryEntry entry = new DirectoryEntry("LDAP://"))
 			using (DirectorySearcher searcher = new DirectorySearcher(entry))
 			{
 				// Set the filter to search for user with the provided UPN

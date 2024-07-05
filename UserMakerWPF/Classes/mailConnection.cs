@@ -30,7 +30,7 @@ namespace UserMaker
 
 		public static async Task<bool> GetMailboxInfo(string userName, string password, string firstName, string lastName, string domain)
 		{
-			using (DirectoryEntry entry = new DirectoryEntry("LDAP://internal.detmold.com.au"))
+			using (DirectoryEntry entry = new DirectoryEntry("LDAP://"))
 			using (DirectorySearcher searcher = new DirectorySearcher(entry))
 			{
 				// Configuration variables

@@ -5,14 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UserMakerWPF"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" 
-        
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:materialDesignMahApps="http://materialdesigninxaml.net/winfx/xaml/themes" 
         xmlns:gif="http://wpfanimatedgif.codeplex.com" 
         x:Name="User_Creation" x:Class="UserMakerWPF.MainWindow"
         xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
         mc:Ignorable="d"
-        Title="User Creation" Height="385" Width="645" Background="#FF424242" ResizeMode="CanMinimize">
+    Title="User Creation" 
+    Height="385" Width="645" 
+    Background="#FF424242" 
+    ResizeMode="CanMinimize">
     <Grid Margin="0,-11,10,0" RenderTransformOrigin="0.466,0.216" Height="364" VerticalAlignment="Top" HorizontalAlignment="Right" Width="635" AutomationProperties.ItemStatus="procressing">
         <Grid.RowDefinitions>
             <RowDefinition Height="138*"/>
@@ -124,7 +126,7 @@
                         </Button.Background>
                     </Button>
                     <Label x:Name="label2" Content="Ticket ID" HorizontalAlignment="Left" Margin="0,25,0,0" VerticalAlignment="Top" Background="{x:Null}" RenderTransformOrigin="0.695,-0.415" Height="26" Width="56" Grid.RowSpan="2" Grid.Column="1"/>
-                    <TextBox x:Name="ticketID_textbox" Grid.Column="2" HorizontalAlignment="Left" Margin="0,29,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.RowSpan="2" Height="18" TextChanged="ticketID_textbox_TextChanged"/>
+                    <TextBox x:Name="ticketID_textbox" Grid.Column="2" HorizontalAlignment="Left" Margin="0,29,0,0" TextWrapping="Wrap" Text= "" VerticalAlignment="Top" Width="120" Grid.RowSpan="2" Height="18" TextChanged="ticketID_textbox_TextChanged"/>
                     <Button x:Name="button2" Grid.Column="2" Content="Search" HorizontalAlignment="Left" Margin="37,20,0,0" Grid.Row="1" VerticalAlignment="Top" Click="searchTicket_btnClick" Height="20" Width="39">
                         <Button.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
